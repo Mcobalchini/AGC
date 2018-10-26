@@ -1,0 +1,41 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<html ng-app="SGWeb">
+<meta charset="UTF-8">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+    <style>
+        .jumbotron {
+            width: 90%;
+            text-align: center;
+            margin-top: 8%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control {
+            margin-bottom: 20px;
+           
+        }
+    </style>
+    <script src="lib/angular.js"></script>
+    <script>
+        angular.module("SGWeb", []);
+        angular.module("SGWeb").controller("SGWebCtrl", function ($scope) {
+            $scope.app = "Sistema de Gestão";
+            $scope.msgWelcome = "Bem vindo!";
+
+
+        });
+    </script>
+</head>
+
+<body ng-controller="SGWebCtrl">
+    <div class="jumbotron">
+        <h1>{{app}}</h1>
+       
+    </div>
+
+</body>
+
+</html>

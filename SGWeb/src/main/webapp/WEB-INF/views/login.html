@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="SGWeb">
+<meta charset="UTF-8">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+    <style>
+        .jumbotron {
+            width: 40%;
+            text-align: center;
+            margin-top: 8%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control {
+            margin-bottom: 20px;
+
+        }
+    </style>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-messages.js"></script>
+    <script>
+        angular.module("SGWeb", ["ngMessages"]);
+        angular.module("SGWeb").controller("SGWebCtrl", function ($scope) {
+            $scope.app = "Assistente de Gestão Comercial";
+
+
+            $scope.employees = [];
+            $scope.addEmployee = function (employee) {
+                $scope.employees.push(employee);
+                delete $scope.employee;
+
+
+            };
+
+            $scope.cancel = function () {
+                delete $scope.employee;
+            };
+
+        });
+    </script>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-dark" ng-controller="SGWebCtrl">
+    <div class="jumbotron">
+        <h1>{{app}}</h1>
+        <hr/>
+        <div class="card mb-3  border-dark rounded">
+            <div class="card-header">
+                Entrar
+            </div>
+            <div class="card-body">
+                <form name="loginForm">
+                    <input class="form-control" type="text" ng-model="employee.user" name="user" placeholder="Usuário" ng-required="true" ng-minlength="4"
+                    />
+                    <input class="form-control" type="password" ng-model="employee.password" name="password" placeholder="Senha" ng-required="true"
+                        ng-minlength="4" />
+                   
+
+                </form>
+
+                <div ng-messages="loginForm.user.$dirty && loginForm.user.$error" role="alert">
+                    <div ng-message="required" class="alert alert-danger">
+                        Por favor, preencha o campo nome!
+                    </div>
+                    <div ng-message="minlength" class="alert alert-danger">
+                        O campo nome deve ter no mínimo 4 caracteres.
+                    </div>
+                </div>
+
+
+                <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
+                    <div ng-message="required" class="alert alert-danger">
+                        Por favor, preencha o campo senha!
+                    </div>
+                    <div ng-message="minlength" class="alert alert-danger">
+                        O campo nome deve ter no mínimo 4 caracteres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-lg" ng-click="addEmployee(employee)" ng-disabled="loginForm.$invalid">Entrar</button>
+        <button class="btn btn-danger btn-lg" ng-click="cancel()" ng-disabled="!employee.user && !employee.password">Cancelar</button>
+    </div>
+
+
+</body>
+<div ng-include="'footer.html'"></div>
+
+</html>
